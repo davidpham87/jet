@@ -4,6 +4,7 @@
    [cheshire.core :as cheshire]
    [cheshire.factory :as factory]
    [cheshire.parse :as cheshire-parse]
+   [clj-yaml.core :as yaml]
    [clojure.edn :as edn]
    [clojure.string :as str]
    [cognitect.transit :as transit]
@@ -50,3 +51,9 @@
         writer (transit/writer bos :json)]
     (transit/write writer o)
     (String. (.toByteArray bos) "UTF-8")))
+
+(defn parse-yaml [s]
+  (yaml/parse-string s))
+
+(defn generate-yaml [o]
+  (yaml/generate-string o))

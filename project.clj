@@ -11,6 +11,7 @@
   :dependencies [[org.clojure/clojure "1.9.0"]
                  [com.cognitect/transit-clj "0.8.319"]
                  [cheshire "5.9.0"]
+                 [clj-commons/clj-yaml "0.7.2"]
                  [fipp "0.6.22"]
                  [commons-io/commons-io "2.6"]
                  [borkdude/sci "0.1.0"]]

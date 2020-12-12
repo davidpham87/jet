@@ -53,7 +53,8 @@
                            :transit (with-in-str file-as-string (formats/parse-transit
                                                                  (formats/transit-reader)))
                            :json (with-in-str file-as-string
-                                   (formats/parse-json (formats/json-parser) keywordize)))]
+                                   (formats/parse-json (formats/json-parser) keywordize))
+                           :yaml (formats/parse-yaml file-as-string))]
          {:state (assoc state next-id file-as-edn)
           :next-id next-id})
        (catch Exception e
@@ -66,7 +67,8 @@
   (try (let [out-string (case format
                           :edn (formats/generate-edn value pretty)
                           :transit (formats/generate-transit value)
-                          :json (formats/generate-json value pretty))]
+                          :json (formats/generate-json value pretty)
+                          :yaml (formats/generate-yaml value))]
          (spit file out-string))
        (catch Exception e
          (println "Could not write to" (str file ":") (.getMessage e)))))

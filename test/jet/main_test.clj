@@ -35,6 +35,14 @@
          (jet "[\"^ \",\"~:a\",1]\n"
               "--from" "transit"
               "--to" "json")))
+  (is (= "{a: 1}\n\n"
+         (jet "{:a 1}"
+              "--from" "edn"
+              "--to" "yaml")))
+  (is (= "a: 1\nb: [1, 2, 3]\n\n"
+         (jet "{:a 1 :b [1 2 3]}"
+              "--from" "edn"
+              "--to" "yaml")))
   (testing "pretty printing"
     (is (= "{\n  \"a\" : [ {\n    \"b\" : {\n      \"c\" : \"d\"\n    }\n  } ]\n}\n"
            (jet "{:a [{:b {:c :d}}]}" "--from" "edn" "--to" "json" "--pretty")))
